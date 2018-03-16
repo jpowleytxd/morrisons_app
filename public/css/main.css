@@ -1,0 +1,304 @@
+/**
+ * ----------------------------------------------------------------
+ * Morrisons Bespoke App - Standard Styling
+ * ----------------------------------------------------------------
+ */
+
+/* ------------------------------------------------------------- */
+/* -------------------------Minimal Reset----------------------- */
+/* ------------------------------------------------------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+}
+
+.clearfix{
+    clear: both;
+}
+
+.hidden{
+    display: none !important;
+}
+
+.mt10{
+    margin-top: 10px;
+}
+
+#wrapper{
+    width: 100%;
+    max-width: 1000px;
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ------------------------------------------------------------- */
+/* -----------------------Component Styling--------------------- */
+/* ------------------------------------------------------------- */
+section{
+    width: 100%;
+    min-height: 100vh;
+    display: block;
+    position: relative;
+    padding: 20px;
+}
+
+footer{
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 20px;
+}
+
+.food_background{
+    background-image: url("http://www.fillmurray.com/600/600");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.button{
+    width: 100%;
+    height: 40px;
+    display: block;
+    position: relative;
+    font-size: 12px;    
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    line-height: 40px;
+}
+
+.green_button{
+    color: #ffffff;
+    border: 0px solid transparent;
+    border-radius: 20px;
+    background: #3b6d46; /* Old browsers */
+    background: -moz-linear-gradient(top, #2b8c1c 0%, #3b6d46 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #2b8c1c 0%,#3b6d46 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #2b8c1c 0%,#3b6d46 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b8c1c', endColorstr='#3b6d46',GradientType=0 ); /* IE6-9 */
+}
+
+/* ------------------------------------------------------------- */
+/* -----------------------Order Placed Page--------------------- */
+/* ------------------------------------------------------------- */
+#order_placed #order_logo{
+    width: 80%;
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+#order_placed .point_circle_outer{
+    width: 90%;
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#order_placed .point_circle_inner{
+    width: 250px;
+    height: 250px;
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    background: rgba(252, 218, 47, 0.8);
+}
+
+#order_placed .upper_title{
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    color: green;
+    font-weight: 700;
+    text-align: center;
+}
+
+#order_placed .points_value{
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    color: green;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+}
+
+#order_placed .lower_title{
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 150px;
+    left: 0;
+    color: green;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+
+#order_placed .points_disclaimer{
+    width: 100%;
+    display: block;
+    position: relative;
+    margin-top: 10px;
+    color: green;
+    font-size: 12px;
+    text-align: center;
+}
+
+@media screen and (min-width: 375px){
+    #order_placed #order_logo{
+        margin-bottom: 20px;
+    }
+
+    #order_placed .point_circle_inner{
+        width: 300px;
+        height: 300px;
+    }
+
+    #order_placed .upper_title{
+        top: 80px;
+        font-size: 18px;
+    }
+    
+    #order_placed .points_value{
+        top: 100px;
+        font-size: 36px;
+    }
+    
+    #order_placed .lower_title{
+        top: 180px;
+        font-size: 20px;
+    }
+
+    #order_placed .points_disclaimer{
+        margin-top: 20px;
+        font-size: 14px;
+    }
+}
+
+/* ------------------------------------------------------------- */
+/* ------------------------My Rewards Page---------------------- */
+/* ------------------------------------------------------------- */
+#my_rewards section{
+    padding: 0px
+}
+
+#my_rewards header{
+    width: 100%;
+    height: 25vh;
+    display: block;
+    position: relative;
+    padding: 20px;
+    background: green;
+}
+
+#my_rewards .upper_title{
+    width: 100%;
+    display: block;
+    position: relative;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: left;
+}
+
+#my_rewards .points_balance{
+    width: 100%;
+    display: block;
+    position: relative;
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: left;
+}
+
+#my_rewards .lower_title{
+    width: 100%;
+    display: block;
+    position: absolute;
+    bottom: 20px;
+    color: #ffffff;
+    font-size: 12px;
+    text-align: left;
+}
+
+#my_rewards .points_tile_container{
+    width: 100%;
+    height: 75vh;
+    display: block;
+    position: relative;
+}
+
+#my_rewards .points_tile{
+    width: 100%;
+    height: 25vh;
+    display: block;
+    position: relative;
+    padding: 20px;
+    border-bottom: 1px solid #000;
+}
+
+#my_rewards .points_tile:last-of-type{
+    border-width: 0px;
+}
+
+#my_rewards .tile_left{
+    width: 70%;
+    display: block;
+    position: relative;
+    float: left;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#my_rewards .total_points{
+    width: 100%;
+    display: block;
+    position: relative;
+    color: green;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#my_rewards .points_reward{
+    width: 100%;
+    display: block;
+    position: relative;
+    color: grey;
+    font-size: 12px;
+}
+
+#my_rewards .tile_right{
+    width: 30%;
+    display: block;
+    position: relative;
+    float: left;
+}
+
+#250_bar {
+    margin: 20px;
+    width: 200px;
+    height: 200px;
+}
