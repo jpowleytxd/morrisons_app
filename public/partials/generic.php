@@ -31,11 +31,9 @@ function printHead($title, $body){
         <title><?php echo $title; ?></title>
         
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="../css/loading-bar.css"/>
         <link href="css/main.css" rel="stylesheet" type="text/css">
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="../js/loading-bar.js"></script>
         <script src="js/main.js"></script>
     </head>
     <body id="<?php echo $body; ?>">

@@ -30,6 +30,10 @@ body{
     margin-top: 10px;
 }
 
+.mb10{
+    margin-bottom: 10px;
+}
+
 #wrapper{
     width: 100%;
     max-width: 1000px;
@@ -48,6 +52,7 @@ section{
     display: block;
     position: relative;
     padding: 20px;
+    overflow: hidden;
 }
 
 footer{
@@ -56,7 +61,6 @@ footer{
     position: absolute;
     left: 0;
     bottom: 0;
-    padding: 20px;
 }
 
 .food_background{
@@ -84,11 +88,10 @@ footer{
 .green_button{
     color: #ffffff;
     border: 0px solid transparent;
-    border-radius: 20px;
-    background: #3b6d46; /* Old browsers */
-    background: -moz-linear-gradient(top, #2b8c1c 0%, #3b6d46 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #2b8c1c 0%,#3b6d46 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #2b8c1c 0%,#3b6d46 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: #00563F; /* Old browsers */
+    background: -moz-linear-gradient(top, #00563F 0%, #014231 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #00563F 0%,#014231 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #00563F 0%,#014231 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b8c1c', endColorstr='#3b6d46',GradientType=0 ); /* IE6-9 */
 }
 
@@ -120,7 +123,7 @@ footer{
     margin-left: auto;
     margin-right: auto;
     border-radius: 50%;
-    background: rgba(252, 218, 47, 0.8);
+    background: rgba(255, 193, 13, 0.5);
 }
 
 #order_placed .upper_title{
@@ -129,7 +132,7 @@ footer{
     position: absolute;
     top: 60px;
     left: 0;
-    color: green;
+    color: #00563F;
     font-weight: 700;
     text-align: center;
 }
@@ -140,7 +143,7 @@ footer{
     position: absolute;
     top: 80px;
     left: 0;
-    color: green;
+    color: #00563F;
     font-size: 32px;
     font-weight: 700;
     text-align: center;
@@ -152,7 +155,7 @@ footer{
     position: absolute;
     top: 150px;
     left: 0;
-    color: green;
+    color: #00563F;
     font-size: 18px;
     font-weight: 700;
     text-align: center;
@@ -163,7 +166,7 @@ footer{
     display: block;
     position: relative;
     margin-top: 10px;
-    color: green;
+    color: #00563F;
     font-size: 12px;
     text-align: center;
 }
@@ -291,14 +294,26 @@ footer{
 }
 
 #my_rewards .tile_right{
-    width: 30%;
+    width: calc(20vh - 40px);
+    height: calc(20vh - 40px);
     display: block;
     position: relative;
     float: left;
+    margin-top: 2.5vh;
 }
 
-#250_bar {
-    margin: 20px;
-    width: 200px;
-    height: 200px;
+#progress250, #progress500, #progress750{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.tile_logo{
+    width: 30px;
+    height: 30px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

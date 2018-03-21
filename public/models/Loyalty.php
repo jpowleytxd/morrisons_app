@@ -48,13 +48,13 @@ class Loyalty{
      */
     public function __construct(){
         // Load in config
-		$config = loadInConfig();
+		$config = $this->loadInConfig();
 
         // Store required variables
-        $this->environment = $jsonImport['ENVIRONMENT'];
-        $this->baseURL = $jsonImport['LOYALTY']['API_BASE'];
-        $this->apiUser = $jsonImport['LOYALTY']['API_USER'];
-        $this->apiPassword = $jsonImport['LOYALTY']['API_PASS'];
+        $this->environment = $config['ENVIRONMENT'];
+        $this->baseURL = $config['LOYALTY']['API_BASE'];
+        $this->apiUser = $config['LOYALTY']['API_USER'];
+        $this->apiPassword = $config['LOYALTY']['API_PASS'];
     }
 
     /**
@@ -65,11 +65,11 @@ class Loyalty{
      */
     public function setDefaultIDs(){
         // Load in config
-		$config = loadInConfig();
+		$config = $this->loadInConfig();
 
         // Store required variables
-        $this->platformServicesCompanyID = $jsonImport['LOYALTY']['PLATFORM_SERVICES_COMPANY_ID'];
-        $this->programID = $jsonImport['LOYALTY']['DEFAULT_PROGRAM_ID'];
+        $this->platformServicesCompanyID = $config['LOYALTY']['PLATFORM_SERVICES_COMPANY_ID'];
+        $this->programID = $config['LOYALTY']['DEFAULT_PROGRAM_ID'];
     }
 
         /**
@@ -144,15 +144,22 @@ class Loyalty{
                     // Check the card is active
                     if($response['Card']['Status'] === "Active"){
                         // Card is active
+                        $pointsValue;
+                        $currencyValue;
                         // Search for the correct balance type theen RETURN
                         foreach($response['Balances'] as $type){
+                            // Parse for currency type
                             if($type['Type'] === "Currency"){
-                                return array("SUCCESS" => true,
-                                             "BALANCE" => $type['Balance'], 
-                                             "CARD_STATUS" => "ACTIVE");
-                                break;
+                                $currencyValue = $type['Balance'];
+                            } else if($type['Type'] === "Points"){
+                                $pointsValue = $type['Balance'];
                             }
                         }
+
+                        return array("SUCCESS" => true,
+                                     "CURRENCY" => $currencyValue,
+                                     "POINTS" => $pointsValue,
+                                     "CARD_STATUS" => "ACTIVE");
                     } else if($response['Card']['Status'] === "Inventory"){
                         // Card is in inventory
                         return array("SUCCESS" => false,
@@ -255,15 +262,22 @@ class Loyalty{
                     // Check the card is active
                     if($response['Card']['Status'] === "Active"){
                         // Card is active
+                        $pointsValue;
+                        $currencyValue;
                         // Search for the correct balance type theen RETURN
                         foreach($response['Balances'] as $type){
+                            // Parse for currency type
                             if($type['Type'] === "Currency"){
-                                return array("SUCCESS" => true,
-                                             "BALANCE" => $type['Balance'],
-                                             "CARD_STATUS" => "ACTIVE");
-                                break;
+                                $currencyValue = $type['Balance'];
+                            } else if($type['Type'] === "Points"){
+                                $pointsValue = $type['Balance'];
                             }
                         }
+
+                        return array("SUCCESS" => true,
+                                     "CURRENCY" => $currencyValue,
+                                     "POINTS" => $pointsValue,
+                                     "CARD_STATUS" => "ACTIVE");
                     } else if($response['Card']['Status'] === "Inventory"){
                         // Card is in inventory
                         return array("SUCCESS" => false,
@@ -404,6 +418,103 @@ class Loyalty{
                          "DATETIME" => $logDate,
                          "FILE" => "models/LoyaltyModel.php", 
                          "METHOD" => "creditLoyaltyAccountCurrency",
+                         "CODE" => "NA");
+        }
+    }
+
+    /**
+     * creditLoyaltyAccountPoints()
+     * @desc - Credits a Loyalty account with a supplied value
+     * @param {int} $topupAmount        - Topup amount as points integer
+     * @param {String} $cardnumber      - Customer's Loyalty cardnumber
+     * @return {Object[]}
+     */
+    public function creditLoyaltyAccountPoints($topupAmount, $cardnumber){
+        // Generate datetime for creation
+        $logDate = date("Y-m-d H:i:s");
+        
+        // Check that $programID has been set
+        if(isset($this->programID) && !empty($this->programID)){
+            // Check that $topupAmount has been set
+            if(isset($topupAmount) && !empty($topupAmount)){
+                // Check that $cardnumber has been set
+                if(isset($cardnumber) && !empty($cardnumber)){
+                    $loyaltyAmount = intval($topupAmount);
+
+                    // Build URL, authorization and CURL
+                    $loyaltyURL = $this->baseURL . "/api/programs/{$this->programID}/accounts/{$cardnumber}/credits";
+                    $authorization = base64_encode($this->apiUser . ":" . $this->apiPassword);
+
+                    // Topup card with transaction amount via the Loyalty Balance Credit API
+                    $curl = curl_init();
+
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => $loyaltyURL,
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => "",
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 30,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => "POST",
+                        CURLOPT_POSTFIELDS => "{\"Amount\":\"{$loyaltyAmount}\",\"Type\":\"Points\",\"Currency\":null}",
+                        CURLOPT_HTTPHEADER => array(
+                            "authorization: Basic " . $authorization,
+                            "cache-control: no-cache",
+                            "content-type: application/json",
+                            "postman-token: 32b9685f-b9b4-d887-e2c6-924373729d96"
+                        ),
+                    ));
+
+                    // Send cURL request
+                    $storedResponse = curl_exec($curl);
+                    $response = json_decode($storedResponse, true);
+
+                    // get cURL info
+                    $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                    $error = curl_error($curl);
+                    curl_close($curl);
+
+                    // Check the response
+                    if($code === 200){
+                        // SUCCESS code -> GET the appropriate details
+                        return array("SUCCESS" => true,
+                                     "BALANCE" => $response['Balance']);
+                    } else{
+                        // An error occurred return details
+                        return array("SUCCESS" => false,
+                                    "MESSAGE" => $error, 
+                                    "DATETIME" => $logDate,
+                                    "FILE" => "models/LoyaltyModel.php", 
+                                    "METHOD" => "creditLoyaltyAccountPoints",
+                                    "CODE" => $code, 
+                                    "RESPONSE" => $storedResponse);
+                    }
+
+                } else{
+                    // $cardnumber hasn't been set.
+                    return array("SUCCESS" => false,
+                                 "MESSAGE" => "cardnumber has not been set.",
+                                 "DATETIME" => $logDate,
+                                 "FILE" => "models/LoyaltyModel.php", 
+                                 "METHOD" => "creditLoyaltyAccountPoints",
+                                 "CODE" => "NA");
+                }
+            } else{
+                // $topupAmount hasn't been set.
+                return array("SUCCESS" => false,
+                             "MESSAGE" => "topupAmount has not been set.",
+                             "DATETIME" => $logDate,
+                             "FILE" => "models/LoyaltyModel.php", 
+                             "METHOD" => "creditLoyaltyAccountPoints",
+                             "CODE" => "NA");
+            }
+        } else{
+            // $programID hasn't been set.
+            return array("SUCCESS" => false,
+                         "MESSAGE" => "Loyalty programID has not been set.",
+                         "DATETIME" => $logDate,
+                         "FILE" => "models/LoyaltyModel.php", 
+                         "METHOD" => "creditLoyaltyAccountPoints",
                          "CODE" => "NA");
         }
     }
