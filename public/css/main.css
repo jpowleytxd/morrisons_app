@@ -63,13 +63,20 @@ footer{
     bottom: 0;
 }
 
-.food_background{
-    background-image: url("http://www.fillmurray.com/600/600");
+.yellow_background{
+    background-image: url("/media/yellow_bg.jpg");
     background-color: #cccccc;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
+}
+
+.white_background{
+    background-image: url("/media/white_bg.jpg");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .button{
@@ -77,7 +84,7 @@ footer{
     height: 40px;
     display: block;
     position: relative;
-    font-size: 12px;    
+    font-size: 12px;
     text-align: center;
     text-transform: uppercase;
     text-decoration: none;
@@ -95,16 +102,32 @@ footer{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b8c1c', endColorstr='#3b6d46',GradientType=0 ); /* IE6-9 */
 }
 
+/* iPhone 6/7/8 */
+@media screen and (min-width: 375px){
+    .button{
+        font-size: 14px;
+    }
+}
+
+/* iPhone 6/7/8 */
+@media screen and (min-width: 375px){
+    .button{
+        height: 50px;
+        font-size: 16px;
+        line-height: 50px;
+    }
+}
+
 /* ------------------------------------------------------------- */
 /* -----------------------Order Placed Page--------------------- */
 /* ------------------------------------------------------------- */
 #order_placed #order_logo{
-    width: 80%;
+    width: 70%;
     display: block;
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 #order_placed .point_circle_outer{
@@ -171,9 +194,10 @@ footer{
     text-align: center;
 }
 
-@media screen and (min-width: 375px){
+/* iPhone 6/7/8 */
+@media screen and (min-width: 375px) and (max-width: 413px){
     #order_placed #order_logo{
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
 
     #order_placed .point_circle_inner{
@@ -188,17 +212,49 @@ footer{
     
     #order_placed .points_value{
         top: 100px;
-        font-size: 36px;
+        font-size: 40px;
     }
     
     #order_placed .lower_title{
-        top: 180px;
+        top: 190px;
         font-size: 20px;
     }
 
     #order_placed .points_disclaimer{
         margin-top: 20px;
-        font-size: 14px;
+        font-size: 16px;
+    }
+}
+
+/* iPhone 6+/7+/8+ */
+@media screen and (min-width: 414px){
+    #order_placed #order_logo{
+        margin-bottom: 40px;
+    }
+
+    #order_placed .point_circle_inner{
+        width: 325px;
+        height: 325px;
+    }
+
+    #order_placed .upper_title{
+        top: 80px;
+        font-size: 22px;
+    }
+    
+    #order_placed .points_value{
+        top: 110px;
+        font-size: 42px;
+    }
+    
+    #order_placed .lower_title{
+        top: 200px;
+        font-size: 22px;
+    }
+
+    #order_placed .points_disclaimer{
+        margin-top: 20px;
+        font-size: 16px;
     }
 }
 
@@ -209,13 +265,17 @@ footer{
     padding: 0px
 }
 
+#my_rewards section#voucher_overlay{
+    padding: 30px;
+}
+
 #my_rewards header{
     width: 100%;
     height: 25vh;
     display: block;
     position: relative;
     padding: 20px;
-    background: green;
+    background: #00563F;
 }
 
 #my_rewards .upper_title{
@@ -260,7 +320,7 @@ footer{
     display: block;
     position: relative;
     padding: 20px;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid rgb(225, 225, 225);
 }
 
 #my_rewards .points_tile:last-of-type{
@@ -280,7 +340,7 @@ footer{
     width: 100%;
     display: block;
     position: relative;
-    color: green;
+    color: #00563F;
     font-size: 16px;
     font-weight: bold;
 }
@@ -302,18 +362,373 @@ footer{
     margin-top: 2.5vh;
 }
 
-#progress250, #progress500, #progress750{
+#my_rewards #progress250, #my_rewards #progress500, #my_rewards #progress750{
     width: 100%;
     height: 100%;
     display: block;
 }
 
-.tile_logo{
-    width: 30px;
+#my_rewards .tile_logo{
     height: 30px;
     display: block;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+/* iPhone 6/7/8 */
+@media screen and (min-width: 375px) and (max-width: 413px){
+    #my_rewards header{
+        padding: 30px;
+    }
+    
+    #my_rewards .upper_title{
+        font-size: 18px;
+    }
+    
+    #my_rewards .points_balance{
+        font-size: 40px;
+    }
+    
+    #my_rewards .lower_title{
+        font-size: 14px;
+    }
+    
+    #my_rewards .points_tile{
+        padding: 30px;
+    }
+    
+    #my_rewards .tile_left{
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    
+    #my_rewards .total_points{
+        font-size: 18px;
+    }
+    
+    #my_rewards .points_reward{
+        font-size: 14px;
+    }
+    
+    #my_rewards .tile_right{
+        width: calc(20vh - 50px);
+        height: calc(20vh - 50px); 
+    }
+}
+
+/* iPhone 6+/7+/8+ */
+@media screen and (min-width: 414px){
+    #my_rewards header{
+        padding: 40px;
+    }
+    
+    #my_rewards .upper_title{
+        font-size: 20px;
+    }
+    
+    #my_rewards .points_balance{
+        font-size: 40px;
+    }
+    
+    #my_rewards .points_tile{
+        padding: 40px;
+    }
+    
+    #my_rewards .tile_left{
+        padding-top: 35px;
+        padding-bottom: 35px;
+    }
+    
+    #my_rewards .total_points{
+        font-size: 20px;
+    }
+    
+    #my_rewards .points_reward{
+        font-size: 14px;
+    }
+    
+    #my_rewards .tile_right{
+        width: calc(20vh - 60px);
+        height: calc(20vh - 60px); 
+        margin-top: 1.5vh;
+    }
+    
+    #my_rewards .tile_logo{
+        height: 35px;
+    }
+}
+
+/* ------------------------------------------------------------- */
+/* ------------------------All Offers Page---------------------- */
+/* ------------------------------------------------------------- */
+
+#all_offers header{
+    width: 100%;
+    display: block;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+#all_offers header .header_image{
+    height: 110px;
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#all_offers .tile_outer{
+    width: 100%;
+    height: 150px;
+    display: block;
+    position: relative;
+    margin-bottom: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#all_offers .tile_outer:last-of-type{
+    margin: 0;
+}
+
+#all_offers .like_corner{
+    width: 75px; 
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0; 
+}
+
+#all_offers .like_corner img{
+    width: 100%; 
+    display: block;
+    position: relative;  
+}
+
+#all_offers .tile_bar{
+    width: 100%;
+    height: 40px;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #00563F;
+    overflow: hidden;
+}
+
+#all_offers .tile_title{
+    width: 80%;
+    height: 40px;
+    position: relative;
+    float: left;
+    padding-left: 15px;
+    color: #fff;
+    font-size: 14px;
+    text-align: left;
+    line-height: 40px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#all_offers .tile_action{
+    width: 20%;
+    height: 40px;
+    position: relative;
+    float: left;
+    padding-right: 15px;
+    text-align: right;
+    line-height: 40px;
+}
+
+#all_offers .action_icon{
+    width: 40px;
+    height: 20px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+}
+
+/* ------------------------------------------------------------- */
+/* -------------------------Offer Overlay----------------------- */
+/* ------------------------------------------------------------- */
+
+#all_offers .overlay_outer, #my_rewards .overlay_outer{
+    z-index: 100;
+    position: fixed;
+    top: 100vh;
+    left: 0;
+    padding: 20px;
+}
+
+#all_offers .offer_pane{
+    width: 100%;
+    height: 450px;
+    display: block;
+    position: relative;
+    background-color: #00563F;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+#all_offers .offer_heart{
+    width: 80px;
+    height: 80px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url('/media/empty-heart.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#all_offers .offer_heart.liked{
+    background-image: url('/media/heart.png');
+}
+
+#all_offers .offer_title{
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 40px;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* iPhone 6/7/8 */
+@media screen and (min-width: 375px) and (max-width: 413px){
+    #all_offers .offer_pane{
+        height: 450px;
+    }
+
+    #all_offers .offer_title{
+        font-size: 24px;
+    }
+    
+}
+
+/* iPhone 6+/7+/8+ */
+@media screen and (min-width: 414px){
+    #all_offers .offer_pane{
+        height: 500px;
+    }
+
+    #all_offers .offer_title{
+        font-size: 24px;
+    }
+}
+
+/* ------------------------------------------------------------- */
+/* ------------------------Voucher Overlay---------------------- */
+/* ------------------------------------------------------------- */
+
+#all_offers .voucher_pane, #my_rewards .voucher_pane{
+    width: 100%;
+    height: 400px;
+    display: block;
+    position: relative;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+#all_offers .voucher_title, #my_rewards .voucher_title{
+    width: 100%;
+    display: block;
+    position: relative;
+    margin-bottom: 10px;
+    color: #00563F;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+#all_offers .voucher_image, #my_rewards .voucher_image{
+    width: 90%;
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#all_offers .voucher_code, #my_rewards .voucher_code{
+    width: 100%;
+    display: block;
+    position: relative;
+    margin-bottom: 20px;
+    color: #00563F;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#all_offers .voucher_text, #my_rewards .voucher_text{
+    width: 100%;
+    display: block;
+    position: relative;
+    color: #00563F;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* iPhone 6/7/8 */
+@media screen and (min-width: 375px) and (max-width: 413px){
+    #all_offers .voucher_pane, #my_rewards .voucher_pane{
+        height: 450px;
+        padding: 30px;
+    }
+
+    #all_offers .voucher_title, #my_rewards .voucher_title{
+        margin-bottom: 20px;
+        font-size: 22px;
+    }
+    
+    #all_offers .voucher_image, #my_rewards .voucher_image{
+        width: 80%;
+    }
+
+    #all_offers .voucher_code, #my_rewards .voucher_code{
+        font-size: 24px;
+    }
+    
+    #all_offers .voucher_text, #my_rewards .voucher_text{
+        font-size: 16px;
+    }
+}
+
+/* iPhone 6+/7+/8+ */
+@media screen and (min-width: 414px){
+    #all_offers .voucher_pane, #my_rewards .voucher_pane{
+        height: 500px;
+        padding: 40px;
+    }
+
+    #all_offers .voucher_title, #my_rewards .voucher_title{
+        margin-bottom: 20px;
+        font-size: 26px;
+    }
+    
+    #all_offers .voucher_image, #my_rewards .voucher_image{
+        width: 80%;
+    }
+
+    #all_offers .voucher_code, #my_rewards .voucher_code{
+        font-size: 24px;
+    }
+    
+    #all_offers .voucher_text, #my_rewards .voucher_text{
+        font-size: 16px;
+    }
 }

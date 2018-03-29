@@ -32,10 +32,7 @@ date_default_timezone_set("Europe/London");
 
 // Include required functions and models
 require_once("partials/generic.php");
-
-// Include required functions and models
-require_once("partials/generic.php");
-require_once("models/dbConn.php");
+require_once("processes/generic.php");
 require_once("models/Loyalty.php");
 
 // ----------------------------------------------------------------
@@ -69,14 +66,6 @@ $perc750;
 // ------------------------Process Functions-----------------------
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
-
-/**
- * processFallback()
- * @desc - Processes any fallback requests
- */
-function processFallback(){
-    echo 'Process fallback';
-}
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
@@ -161,6 +150,8 @@ if($dataRecieved){
     // Set values from the Loyalty response
     $loyaltyPoints = $loyaltyResponse['POINTS'];
 
+    $loyaltyPoints = 500;
+
     // Calculate percentages
     $perc250 = intval($loyaltyPoints) / 250;
     $perc500 = intval($loyaltyPoints) / 500;
@@ -172,7 +163,7 @@ if($dataRecieved){
 } else{
     // No data
     // POST is NOT set -> fallback
-    goToFallback('no_post');
+    processFallback();
 }
 
 ?>
@@ -186,77 +177,58 @@ if($dataRecieved){
         <div class="lower_title">Here's what you can get with your points</div>
     </header>
     <div class="points_tile_container">
-        <div class="points_tile">
+        <div class="points_tile" data-title="FREE soft drink" data-points="250">
             <div class="tile_left">
                 <div class="total_points">250 Points</div>
                 <div class="points_reward">Redeem a FREE soft drink</div>
             </div>
             <div class="tile_right"> 
                 <div class="progress" id="progress250"></div>
-                <img src="https://www.fillmurray.com/30/30" alt="" class="tile_logo">
+                <img src="/media/drink-icon.png" alt="" class="tile_logo">
             </div>
             <div class="clearfix"></div>
         </div>
-        <div class="points_tile">
+        <div class="points_tile" data-title="FREE hot drink" data-points="500">
             <div class="tile_left">
                 <div class="total_points">500 Points</div>
                 <div class="points_reward">Redeem a FREE hot drink</div>
             </div>
             <div class="tile_right">
                 <div class="progress" id="progress500"></div>
-                <img src="https://www.fillmurray.com/30/30" alt="" class="tile_logo">
+                <img src="/media/coffee-icon.png" alt="" class="tile_logo">
             </div>
             <div class="clearfix"></div>
         </div>
-        <div class="points_tile">
+        <div class="points_tile" data-title="FREE snack" data-points="750">
             <div class="tile_left">
                 <div class="total_points">750 Points</div>
                 <div class="points_reward">Redeem a FREE snack</div>
             </div>
             <div class="tile_right">
                 <div class="progress" id="progress750"></div>
-                <img src="https://www.fillmurray.com/30/30" alt="" class="tile_logo">
+                <img src="/media/sandwich-icon.png" alt="" class="tile_logo">
             </div>
             <div class="clearfix"></div>
         </div>
     </div>
 </section>
+
+<section class="overlay_outer yellow_background" id="voucher_overlay">
+    <div class="voucher_pane">
+        <div class="voucher_title"></div>
+        <img src="http://chart.apis.google.com/chart?cht=qr&chs=500x500&chl=<?php echo $loyaltyCardnumber; ?>" alt class="voucher_image">
+        <div class="voucher_code"><?php echo $loyaltyCardnumber; ?></div>
+        <div class="voucher_text">To redeem your reward, the cashier will need to scan this code</div>
+    </div>
+    <footer>
+        <a class="green_button button all_offers_button" data-overlay="voucher">View All Offers</a>
+    </footer>
+</section>
 <script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/0.5.6/dist/progressbar.js"></script>
 <script>
-// Load all progress bars
-window.onload = function onLoad() {
-    // Initiate 250 Points loader
-    var circle250 = new ProgressBar.Circle('#progress250', {
-        color: '#00563F',
-        trailColor: 'rgba(255, 193, 13, 0.5)',
-        duration: 3000,
-        easing: 'bounce',
-        strokeWidth: 12,
-        trailWidth: 12
-    });
-    circle250.animate(<?php echo $perc250; ?>);
-
-    // Initiate 500 Points loader
-    var circle500 = new ProgressBar.Circle('#progress500', {
-        color: '#00563F',
-        trailColor: 'rgba(255, 193, 13, 0.5)',
-        duration: 3000,
-        easing: 'bounce',
-        strokeWidth: 12,
-        trailWidth: 12
-    });
-    circle500.animate(<?php echo $perc500; ?>);
-
-    // Initiate 750 Points loader
-    var circle750 = new ProgressBar.Circle('#progress750', {
-        color: '#00563F',
-        trailColor: 'rgba(255, 193, 13, 0.5)',
-        duration: 3000,
-        easing: 'bounce',
-        strokeWidth: 12,
-        trailWidth: 12
-    });
-    circle750.animate(<?php echo $perc750; ?>);
-};
+    const points = <?php echo $loyaltyPoints; ?>;
+    const perc250 = <?php echo $perc250; ?>;
+    const perc500 = <?php echo $perc500; ?>;
+    const perc750 = <?php echo $perc750; ?>;
 </script>
 <?php printFoot(); ?>

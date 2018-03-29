@@ -1,0 +1,7 @@
+[3/27/2018, 2:50:38 PM] layer "customer@gmail.com": Unsupported extension: com
+[3/27/2018, 2:50:38 PM] layer "customer@gmail.com": Unsupported extension: com
+[3/27/2018, 2:50:38 PM] layer "customer@gmail.com": Unsupported extension: com
+[3/27/2018, 2:50:38 PM] layer "customer@gmail.com": Unsupported extension: com
+[3/27/2018, 2:50:38 PM] layer "Google+": Expected end of input but "+" found.
+[3/27/2018, 2:50:38 PM] layer "Google+": Expected end of input but "+" found.
+[3/27/2018, 2:50:38 PM] layer "sandeepkasundra@gmail.com": Unsupported extension: com

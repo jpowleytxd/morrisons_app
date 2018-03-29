@@ -33,6 +33,7 @@ date_default_timezone_set("Europe/London");
 
 // Include required functions and models
 require_once("partials/generic.php");
+require_once("processes/generic.php");
 
 // ----------------------------------------------------------------
 // ------------------------Global Variables------------------------
@@ -64,14 +65,6 @@ $returnJSON;
 // ------------------------Process Functions-----------------------
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
-
-/**
- * processFallback()
- * @desc - Processes any fallback requests
- */
-function processFallback(){
-    echo 'Process fallback';
-}
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
@@ -160,7 +153,7 @@ if($dataRecieved){
 } else{
     // No data
     // POST is NOT set -> fallback
-    goToFallback('no_post');
+    processFallback();
 }
 
 // ----------------------------------------------------------------
@@ -170,8 +163,8 @@ if($dataRecieved){
 
 <?php printHead('Your Points', "order_placed"); ?>
 
-<section class="food_background">
-    <img src="http://www.fillmurray.com/300/150" alt="Morrison" id="order_logo">
+<section class="yellow_background">
+    <img src="/media/morrisons.png" alt="Morrison" id="order_logo">
     <div class="point_circle_outer">
         <div class="point_circle_inner">
             <div class="upper_title">You have received...</div>
@@ -186,39 +179,13 @@ if($dataRecieved){
 </section>
 <footer>
     <a class="green_button button mb10" id="my_rewards_button">View My Rewards</a>
-    <a class="green_button button mb10" id="place_order">Place Another Order</a>
+    <a class="green_button button" id="place_order">Place Another Order</a>
 </footer>
 <form action="my_rewards.php" method="POST" id="post_details">
     <input type="hidden" name="base64" value="<?php echo $returnJSON;  ?>">
 </form>
 <script>
     const deviceType = "<?php echo $platform; ?>";
-
-    // Detect click on place another order button
-    $('#place_order').on('click', function(event){
-        event.preventDefault();
-        event.stopPropagation();
-
-        var type = deviceType.toLowerCase();
-
-        // Search for substring -> iphone
-        if((type.indexOf("iphone") >= 0)){
-            // iPhone callback needed
-            alert('iPhone callback');
-        } else if((type.indexOf("android") >= 0)){
-            // Android callback needed
-            alert('Android callback');
-        }
-    });
-
-    // Detect click on view my rewards
-    $('#my_rewards_button').on('click', function(event){
-        event.preventDefault();
-        event.stopPropagation();
-
-        // Submit form and leave page
-        $('#post_details').submit();
-    });
 </script>
 
 <?php printFoot(); ?>
