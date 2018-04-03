@@ -11,7 +11,8 @@
  * @desc - Processes any fallback requests
  */
 function processFallback(){
-    echo 'Process fallback';
+    header("Location: fallback.php");
+    die();
 }
 
 ?>
