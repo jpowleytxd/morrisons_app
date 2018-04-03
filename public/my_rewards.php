@@ -150,8 +150,6 @@ if($dataRecieved){
     // Set values from the Loyalty response
     $loyaltyPoints = $loyaltyResponse['POINTS'];
 
-    $loyaltyPoints = 500;
-
     // Calculate percentages
     $perc250 = intval($loyaltyPoints) / 250;
     $perc500 = intval($loyaltyPoints) / 500;
@@ -216,7 +214,7 @@ if($dataRecieved){
 <section class="overlay_outer yellow_background" id="voucher_overlay">
     <div class="voucher_pane">
         <div class="voucher_title"></div>
-        <img src="http://chart.apis.google.com/chart?cht=qr&chs=500x500&chl=<?php echo $loyaltyCardnumber; ?>" alt class="voucher_image">
+        <img src="https://chart.apis.google.com/chart?cht=qr&chs=500x500&chl=<?php echo $loyaltyCardnumber; ?>" alt class="voucher_image">
         <div class="voucher_code"><?php echo $loyaltyCardnumber; ?></div>
         <div class="voucher_text">To redeem your reward, the cashier will need to scan this code</div>
     </div>
