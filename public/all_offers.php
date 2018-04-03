@@ -425,7 +425,7 @@ if(isset($offerStack) && !empty($offerStack)){
 <section class="overlay_outer yellow_background" id="voucher_overlay">
     <div class="voucher_pane">
         <div class="voucher_title"></div>
-        <img src alt class="voucher_image">
+        <img src class="voucher_image">
         <div class="voucher_code"></div>
         <div class="voucher_text">To redeem your reward, the cashier will need to scan this code</div>
     </div>

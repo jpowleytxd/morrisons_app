@@ -206,7 +206,6 @@ function openVoucher(tile){
     var title = $(tile).data('title');
 
     // Push values into QR page
-    $('.voucher_image').attr('alt', code);
     $('.voucher_image').attr('src', qrLink + code);
     $('.voucher_code').html(code);
     $('.voucher_title').html(title);

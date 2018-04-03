@@ -35,7 +35,7 @@ function printHead($title, $body){
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
-        <script src="/js/<?php echo $body;?>.js" type="text/javascript"></script>
+        <script src="/js/<?php echo $body;?>.js?v=1" type="text/javascript"></script>
 
     </head>
     <body id="<?php echo $body; ?>">
