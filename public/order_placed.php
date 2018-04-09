@@ -23,7 +23,7 @@
  *                                      -> ['firstName']
  *                                      -> ['lastName']
  *                                      -> ['deviceIdentifier']
- *                      -> ['basketSpend']
+ *                                      -> ['basketSpend']
  * ----------------------------------------------------------------
  */
 
@@ -65,6 +65,15 @@ $returnJSON;
 // ------------------------Process Functions-----------------------
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
+
+/**
+ * appFallback()
+ * @desc - Fallback used to go back into the main app
+ */
+function appFallback(){
+    header("Location: iorder://orderfood");
+    die();
+}
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
@@ -114,20 +123,20 @@ if($environment === "DEVELOPMENT"){
                 $firstName = (array_key_exists("firstName", $json['request']['user']) && isset($json['request']['user']['firstName']) && !empty($json['request']['user']['firstName'])) ? $json['request']['user']['firstName'] : "NOT_SET";
                 $lastName = (array_key_exists("lastName", $json['request']['user']) && isset($json['request']['user']['lastName']) && !empty($json['request']['user']['lastName'])) ? $json['request']['user']['lastName'] : "NOT_SET";
                 $deviceIdentifier = (array_key_exists("deviceIdentifier", $json['request']['user']) && isset($json['request']['user']['deviceIdentifier']) && !empty($json['request']['user']['deviceIdentifier'])) ? $json['request']['user']['deviceIdentifier'] : "NOT_SET";
-                $basketSpend = (array_key_exists("basketSpend", $json['request']) && isset($json['request']['basketSpend']) && !empty($json['request']['basketSpend'])) ? $json['request']['basketSpend'] : "NOT_SET";
+                $basketSpend = (array_key_exists("basketSpend", $json['request']['user']) && isset($json['request']['user']['basketSpend']) && !empty($json['request']['user']['basketSpend'])) ? $json['request']['user']['basketSpend'] : "NOT_SET";
 
                 $dataRecieved = true;
             } else{
                 // POST does not contain email OR cardnumber
-                loyaltyFallback();
+                appFallback();
             }
         } else{
             // POST does not contain user data
-            processFallback();
+            appFallback();
         }
     } else{
         // POST is NOT set -> fallback
-        processFallback();
+        appFallback();
     }
 }
 
@@ -153,7 +162,7 @@ if($dataRecieved){
 } else{
     // No data
     // POST is NOT set -> fallback
-    processFallback();
+    appFallback();
 }
 
 // ----------------------------------------------------------------
