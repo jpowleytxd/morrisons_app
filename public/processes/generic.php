@@ -15,4 +15,13 @@ function processFallback(){
     die();
 }
 
+/**
+ * LoyaltyFallback()
+ * @desc - Processes loyalty fallback requests
+ */
+function LoyaltyFallback(){
+    header("Location: loyalty_fallback.php");
+    die();
+}
+
 ?>

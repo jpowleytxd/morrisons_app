@@ -215,7 +215,7 @@ if($environment === "DEVELOPMENT"){
                 $dataRecieved = true;
             } else{
                 // POST does not contain email OR cardnumber
-                processFallback();
+                loyaltyFallback();
             }
         } else{
             // POST does not contain user data
