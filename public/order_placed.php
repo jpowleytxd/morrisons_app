@@ -71,7 +71,7 @@ $returnJSON;
  * @desc - Fallback used to go back into the main app
  */
 function appFallback(){
-    header("Location: iorder://orderfood");
+    header("Location: https://iorder.com/orderfood");
     die();
 }
 
@@ -188,7 +188,7 @@ if($dataRecieved){
 </section>
 <footer>
     <a class="green_button button mb10" id="my_rewards_button">View My Rewards</a>
-    <a href="iorder://orderfood" class="green_button button" id="place_order">Place Another Order</a>
+    <a href="https://iorder.com/orderfood" class="green_button button" id="place_order">Place Another Order</a>
 </footer>
 <form action="my_rewards.php" method="POST" id="post_details">
     <input type="hidden" name="base64" value="<?php echo $returnJSON;  ?>">
