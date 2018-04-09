@@ -9,6 +9,9 @@
 // ----------------------------------------------------------------
 
 $(document).ready(function(){
+    /**
+     * DEPRECATED - 090418
+     * @desc - Deprecated due to using a hard link on the button instead
     // Detect click on place another order button
     $('#place_order').on('click', function(event){
         event.preventDefault();
@@ -25,6 +28,7 @@ $(document).ready(function(){
             alert('Android callback');
         }
     });
+     */
 
     // Detect click on view my rewards
     $('#my_rewards_button').on('click', function(event){
