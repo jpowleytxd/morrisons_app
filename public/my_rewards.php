@@ -149,7 +149,7 @@ if($dataRecieved){
 
     // Set values from the Loyalty response
     $loyaltyPoints = $loyaltyResponse['POINTS'];
-
+    
     // Calculate percentages
     $perc250 = intval($loyaltyPoints) / 250;
     $perc500 = intval($loyaltyPoints) / 500;

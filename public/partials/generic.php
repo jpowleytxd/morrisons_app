@@ -31,7 +31,7 @@ function printHead($title, $body){
         <title><?php echo $title; ?></title>
         
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
-        <link href="css/main.css?v=1" rel="stylesheet" type="text/css">
+        <link href="css/main.css?v=10" rel="stylesheet" type="text/css">
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
