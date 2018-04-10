@@ -35,11 +35,14 @@ require_once("partials/generic.php");
 require_once("processes/generic.php");
 require_once("models/Loyalty.php");
 
+// var_dump($_POST); die();
+
 // ----------------------------------------------------------------
 // ------------------------Global Variables------------------------
 // ----------------------------------------------------------------
 $config;
 $environment;
+$redirected = false;
 
 // From POST
 $bundleIdentifier;
@@ -99,31 +102,31 @@ if($environment === "DEVELOPMENT"){
     if(isset($_POST) && !empty($_POST)){
         // Check if standard request or if json has been passed
         $json;
-        if(array_key_exists('json', $_POST)){
+        if(array_key_exists('base64', $_POST)){
             // Decode and check the POST
-            $json = base64_decode($_POST['request']);
+            $json = base64_decode($_POST['base64']);
             $json = json_decode($json, true);
+            $redirected = true;
         } else{
             // Decode and check the POST
             $json = json_decode($_POST['request'], true);
         }
-
-        // Check if POST has minimum required user data
-        if(array_key_exists("user", $json['request'])){
-            if((array_key_exists("emailAddress", $json['request']['user'])) && (array_key_exists("loyaltyCardNumber", $json['request']['user']))){
+        
+        // Check if been redirected
+        if($redirected){
+            if((array_key_exists("emailAddress", $json)) && (array_key_exists("loyaltyCardnumber", $json))){
                 // Store POST data in globals
                 // Format => (IF STATEMENT) ? [TRUE ACTION] : [FALSE ACTION];
-                $bundleIdentifier = (array_key_exists("bundleIdentifier", $json['request']) && isset($json['request']['bundleIdentifier']) && !empty($json['request']['bundleIdentifier'])) ? $json['request']['bundleIdentifier'] : "NOT_SET";
-                $version = (array_key_exists("version", $json['request']) && isset($json['request']['version']) && !empty($json['request']['version'])) ? $json['request']['version'] : "NOT_SET";
-                $platform = (array_key_exists("platform", $json['request']) && isset($json['request']['platform']) && !empty($json['request']['platform'])) ? $json['request']['platform'] : "NOT_SET";
-                $method = (array_key_exists("method", $json['request']) && isset($json['request']['method']) && !empty($json['request']['method'])) ? $json['request']['method'] : "NOT_SET";
-                $siteId = (array_key_exists("siteId", $json['request']) && isset($json['request']['siteId']) && !empty($json['request']['siteId'])) ? $json['request']['siteId'] : "NOT_SET";
-                $emailAddress = (array_key_exists("emailAddress", $json['request']['user']) && isset($json['request']['user']['emailAddress']) && !empty($json['request']['user']['emailAddress'])) ? $json['request']['user']['emailAddress'] : "NOT_SET";
-                $loyaltyCardnumber = (array_key_exists("loyaltyCardNumber", $json['request']['user']) && !empty($json['request']['user']['loyaltyCardNumber'])) ? $json['request']['user']['loyaltyCardNumber'] : "NOT_SET";
-                $firstName = (array_key_exists("firstName", $json['request']['user']) && isset($json['request']['user']['firstName']) && !empty($json['request']['user']['firstName'])) ? $json['request']['user']['firstName'] : "NOT_SET";
-                $lastName = (array_key_exists("lastName", $json['request']['user']) && isset($json['request']['user']['lastName']) && !empty($json['request']['user']['lastName'])) ? $json['request']['user']['lastName'] : "NOT_SET";
-                $deviceIdentifier = (array_key_exists("deviceIdentifier", $json['request']['user']) && isset($json['request']['user']['deviceIdentifier']) && !empty($json['request']['user']['deviceIdentifier'])) ? $json['request']['user']['deviceIdentifier'] : "NOT_SET";
-                $basketSpend = (array_key_exists("basketSpend", $json['request']) && isset($json['request']['basketSpend']) && !empty($json['request']['basketSpend'])) ? $json['request']['basketSpend'] : "NOT_SET";
+                $bundleIdentifier = (array_key_exists("bundleIdentifier", $json) && isset($json['bundleIdentifier']) && !empty($json['bundleIdentifier'])) ? $json['bundleIdentifier'] : "NOT_SET";
+                $version = (array_key_exists("version", $json) && isset($json['version']) && !empty($json['version'])) ? $json['version'] : "NOT_SET";
+                $platform = (array_key_exists("platform", $json) && isset($json['platform']) && !empty($json['platform'])) ? $json['platform'] : "NOT_SET";
+                $method = (array_key_exists("method", $json) && isset($json['method']) && !empty($json['method'])) ? $json['method'] : "NOT_SET";
+                $siteId = (array_key_exists("siteId", $json) && isset($json['siteId']) && !empty($json['siteId'])) ? $json['siteId'] : "NOT_SET";
+                $emailAddress = (array_key_exists("emailAddress", $json) && isset($json['emailAddress']) && !empty($json['emailAddress'])) ? $json['emailAddress'] : "NOT_SET";
+                $loyaltyCardnumber = (array_key_exists("loyaltyCardnumber", $json) && !empty($json['loyaltyCardnumber'])) ? $json['loyaltyCardnumber'] : "NOT_SET";
+                $firstName = (array_key_exists("firstName", $json) && isset($json['firstName']) && !empty($json['firstName'])) ? $json['firstName'] : "NOT_SET";
+                $lastName = (array_key_exists("lastName", $json) && isset($json['lastName']) && !empty($json['lastName'])) ? $json['lastName'] : "NOT_SET";
+                $deviceIdentifier = (array_key_exists("deviceIdentifier", $json) && isset($json['deviceIdentifier']) && !empty($json['deviceIdentifier'])) ? $json['deviceIdentifier'] : "NOT_SET";
 
                 $dataRecieved = true;
             } else{
@@ -131,8 +134,32 @@ if($environment === "DEVELOPMENT"){
                 processFallback();
             }
         } else{
-            // POST does not contain user data
-            processFallback();
+            // Check if POST has minimum required user data
+            if(array_key_exists("user", $json['request'])){
+                if((array_key_exists("emailAddress", $json['request']['user'])) && (array_key_exists("loyaltyCardNumber", $json['request']['user']))){
+                    // Store POST data in globals
+                    // Format => (IF STATEMENT) ? [TRUE ACTION] : [FALSE ACTION];
+                    $bundleIdentifier = (array_key_exists("bundleIdentifier", $json['request']) && isset($json['request']['bundleIdentifier']) && !empty($json['request']['bundleIdentifier'])) ? $json['request']['bundleIdentifier'] : "NOT_SET";
+                    $version = (array_key_exists("version", $json['request']) && isset($json['request']['version']) && !empty($json['request']['version'])) ? $json['request']['version'] : "NOT_SET";
+                    $platform = (array_key_exists("platform", $json['request']) && isset($json['request']['platform']) && !empty($json['request']['platform'])) ? $json['request']['platform'] : "NOT_SET";
+                    $method = (array_key_exists("method", $json['request']) && isset($json['request']['method']) && !empty($json['request']['method'])) ? $json['request']['method'] : "NOT_SET";
+                    $siteId = (array_key_exists("siteId", $json['request']) && isset($json['request']['siteId']) && !empty($json['request']['siteId'])) ? $json['request']['siteId'] : "NOT_SET";
+                    $emailAddress = (array_key_exists("emailAddress", $json['request']['user']) && isset($json['request']['user']['emailAddress']) && !empty($json['request']['user']['emailAddress'])) ? $json['request']['user']['emailAddress'] : "NOT_SET";
+                    $loyaltyCardnumber = (array_key_exists("loyaltyCardNumber", $json['request']['user']) && !empty($json['request']['user']['loyaltyCardNumber'])) ? $json['request']['user']['loyaltyCardNumber'] : "NOT_SET";
+                    $firstName = (array_key_exists("firstName", $json['request']['user']) && isset($json['request']['user']['firstName']) && !empty($json['request']['user']['firstName'])) ? $json['request']['user']['firstName'] : "NOT_SET";
+                    $lastName = (array_key_exists("lastName", $json['request']['user']) && isset($json['request']['user']['lastName']) && !empty($json['request']['user']['lastName'])) ? $json['request']['user']['lastName'] : "NOT_SET";
+                    $deviceIdentifier = (array_key_exists("deviceIdentifier", $json['request']['user']) && isset($json['request']['user']['deviceIdentifier']) && !empty($json['request']['user']['deviceIdentifier'])) ? $json['request']['user']['deviceIdentifier'] : "NOT_SET";
+                    $basketSpend = (array_key_exists("basketSpend", $json['request']) && isset($json['request']['basketSpend']) && !empty($json['request']['basketSpend'])) ? $json['request']['basketSpend'] : "NOT_SET";
+
+                    $dataRecieved = true;
+                } else{
+                    // POST does not contain email OR cardnumber
+                    processFallback();
+                }
+            } else{
+                // POST does not contain user data
+                processFallback();
+            }
         }
     } else{
         // POST is NOT set -> fallback
