@@ -384,10 +384,6 @@ if(isset($offerStack) && !empty($offerStack)){
 <?php printHead('All Offers', "all_offers"); ?>
 
 <section>
-    <header>
-        <img src="/media/market_street_header.png" alt="Market Street" class="header_image">
-    </header>
-
     <?php foreach($voucherStack as $voucher){ ?>
         <div id="voucher_<?php echo $voucher['CODE']; ?>" class="tile_outer" style="background-image: url('<?php echo $voucher['BACKGROUND']; ?>');" data-action="voucher" data-code="<?php echo $voucher['CODE']; ?>" data-title="<?php echo $voucher['TITLE']; ?>">
             <div class="tile_bar">

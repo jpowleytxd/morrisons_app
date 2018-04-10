@@ -39,6 +39,7 @@ body{
     max-width: 1000px;
     display: block;
     position: relative;
+    margin-top: 56px;
     margin-left: auto;
     margin-right: auto;
 }
