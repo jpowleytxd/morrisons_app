@@ -179,7 +179,7 @@ if($dataRecieved){
             <div class="upper_title">You have received...</div>
             <div class="points_value"><?php echo intval($loyaltyPoints); ?> points</div>
             <div class="lower_title">
-                <p>Thanks for you order</p>
+                <p>Thanks for your order</p>
                 <p>Enjoy!</p>
             </div>
         </div>

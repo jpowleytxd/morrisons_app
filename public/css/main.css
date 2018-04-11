@@ -187,12 +187,16 @@ footer{
 
 #order_placed .points_disclaimer{
     width: 100%;
-    display: block;
+    display: none;
     position: relative;
     margin-top: 10px;
     color: #00563F;
     font-size: 12px;
     text-align: center;
+}
+
+#order_placed footer{
+    bottom: 56px;
 }
 
 /* iPhone 6/7/8 */
