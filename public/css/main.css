@@ -65,7 +65,7 @@ footer{
 }
 
 .yellow_background{
-    background-image: url("/media/yellow_bg.jpg");
+    background-image: url("/media/WHITE-BG.jpg");
     background-color: #cccccc;
     background-position: center;
     background-repeat: no-repeat;
@@ -73,7 +73,7 @@ footer{
 }
 
 .white_background{
-    background-image: url("/media/white_bg.jpg");
+    background-image: url("/media/WHITE-BG.jpg");
     background-color: #cccccc;
     background-position: center;
     background-repeat: no-repeat;
@@ -96,11 +96,7 @@ footer{
 .green_button{
     color: #ffffff;
     border: 0px solid transparent;
-    background: #00563F; /* Old browsers */
-    background: -moz-linear-gradient(top, #00563F 0%, #014231 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #00563F 0%,#014231 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #00563F 0%,#014231 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b8c1c', endColorstr='#3b6d46',GradientType=0 ); /* IE6-9 */
+    background: #233564;
 }
 
 /* iPhone 6/7/8 */
@@ -280,7 +276,7 @@ footer{
     display: block;
     position: relative;
     padding: 20px;
-    background: #00563F;
+    background: #233564;
 }
 
 #my_rewards .upper_title{
@@ -345,7 +341,7 @@ footer{
     width: 100%;
     display: block;
     position: relative;
-    color: #00563F;
+    color: #233564;
     font-size: 16px;
     font-weight: bold;
 }
@@ -380,6 +376,8 @@ footer{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    -webkit-filter: brightness(0%);
+    filter: brightness(0%);
 }
 
 /* iPhone 6/7/8 */
@@ -501,7 +499,7 @@ footer{
 
 #all_offers .like_corner{
     width: 75px; 
-    display: block;
+    display: none;
     position: absolute;
     top: 0;
     right: 0; 
@@ -520,7 +518,7 @@ footer{
     position: absolute;
     bottom: 0;
     left: 0;
-    background: #00563F;
+    background: #233564;
     overflow: hidden;
 }
 
@@ -574,7 +572,7 @@ footer{
     height: 450px;
     display: block;
     position: relative;
-    background-color: #00563F;
+    background-color: #233564;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -658,7 +656,7 @@ footer{
     display: block;
     position: relative;
     margin-bottom: 10px;
-    color: #00563F;
+    color: #233564;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
@@ -678,7 +676,7 @@ footer{
     display: block;
     position: relative;
     margin-bottom: 20px;
-    color: #00563F;
+    color: #233564;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
@@ -688,7 +686,7 @@ footer{
     width: 100%;
     display: block;
     position: relative;
-    color: #00563F;
+    color: #233564;
     font-size: 14px;
     text-align: center;
 }

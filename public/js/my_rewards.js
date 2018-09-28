@@ -42,8 +42,8 @@ $(document).ready(function(){
 window.onload = function onLoad() {
     // Initiate 250 Points loader
     var circle250 = new ProgressBar.Circle('#progress250', {
-        color: '#00563F',
-        trailColor: 'rgba(255, 193, 13, 0.5)',
+        color: '#233564',
+        trailColor: 'rgba(168, 175, 794, 1)',
         duration: 3000,
         easing: 'bounce',
         strokeWidth: 12,
@@ -52,8 +52,8 @@ window.onload = function onLoad() {
 
     // Initiate 500 Points loader
     var circle500 = new ProgressBar.Circle('#progress500', {
-        color: '#00563F',
-        trailColor: 'rgba(255, 193, 13, 0.5)',
+        color: '#233564',
+        trailColor: 'rgba(168, 175, 794, 1)',
         duration: 3000,
         easing: 'bounce',
         strokeWidth: 12,
@@ -62,8 +62,8 @@ window.onload = function onLoad() {
 
     // Initiate 750 Points loader
     var circle750 = new ProgressBar.Circle('#progress750', {
-        color: '#00563F',
-        trailColor: 'rgba(255, 193, 13, 0.5)',
+        color: '#233564',
+        trailColor: 'rgba(168, 175, 794, 1)',
         duration: 3000,
         easing: 'bounce',
         strokeWidth: 12,
